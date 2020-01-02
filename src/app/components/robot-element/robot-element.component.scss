@@ -1,0 +1,8 @@
+:host {
+  position: absolute;
+  transform: rotate(0deg);
+  transition-duration: 0.1s;
+  transition-property: left, top, transform;
+  transition-timing-function: ease-in;
+  transform-origin: 50% 50%;
+}

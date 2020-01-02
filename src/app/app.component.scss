@@ -1,0 +1,27 @@
+@import "src/assets/styles/variables.scss";
+:host {
+  height: 100%;
+  background-color: $backgroundColor;
+  display: flex;
+  flex-direction: column;
+  .toolbar {
+    height: 60px;
+    background-color: $backgroundColorInverse;
+    color: $colorInverse;
+    padding: 0 $padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .content {
+    overflow: hidden;
+    flex: 1;
+  }
+  nav {
+    a {
+      color: $colorInverse;
+      text-decoration: none;
+      margin-right: $padding;
+    }
+  }
+}

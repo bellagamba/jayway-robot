@@ -1,0 +1,13 @@
+<div id="canvas-wrapper">
+  <span class="title">Position: ({{gridCoordinates.x}}, {{gridCoordinates.y}}) &nbsp;&nbsp;&nbsp; Direction: {{translatedDirection}}</span>
+  <canvas id="grid-canvas">
+  </canvas>
+  <div id="robot-image-container">
+    <div id="robot-image-inner-container">
+      <app-robot-element 
+        [size]="cellSize"
+        [robotState]="currentRobotElementState">
+      </app-robot-element>
+    </div>
+  </div>
+</div>
