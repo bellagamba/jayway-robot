@@ -13,11 +13,6 @@ export class GridComponent implements OnInit {
   @Input() public set options(options: Options) {
     this.initGrid(options);
   }
-  @Input() public set pathSequence(pathSequence: string) {
-    if (pathSequence !== undefined && pathSequence.length > 0) {
-      this.robot.exeuteCommands(pathSequence);
-   }
-  }
 
   private canvasContext: CanvasRenderingContext2D;
   private cellSize = 30;
@@ -38,6 +33,12 @@ export class GridComponent implements OnInit {
         this.setRobotElementState(robotState);
       }
     );
+  }
+
+  setPathSequence(pathSequence: string) {
+    if (pathSequence !== undefined && pathSequence.length > 0) {
+      this.robot.exeuteCommands(pathSequence);
+    }
   }
 
   initGrid(options: Options) {

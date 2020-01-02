@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Options } from 'src/app/models';
 import { Direction } from 'src/app/constants';
 import { StateService } from 'src/app/services/state.service';
+import { GridComponent } from 'src/app/components/grid/grid.component';
 
 @Component({
   selector: 'app-robot-page',
@@ -9,18 +10,16 @@ import { StateService } from 'src/app/services/state.service';
   styleUrls: ['./robot-page.component.scss']
 })
 export class RobotPageComponent {
-  private pathSequence: string;
-  private options: Options = {
-    size: 20,
-    coordinates: { x: 0, y: 0},
-    direction: Direction.SOUTH,
-  };
+
+  @ViewChild(GridComponent, {static: false}) private gridComponent: GridComponent;
+
+  private options: Options;
 
   constructor(public stateService: StateService) {
     this.options = stateService.options;
   }
 
   pathChangedHandler(pathSequence: string): void  {
-    this.pathSequence = pathSequence;
+    this.gridComponent.setPathSequence(pathSequence);
   }
 }

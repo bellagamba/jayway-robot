@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { FormComponent } from './components/form/form.component';
 import { GridComponent } from './components/grid/grid.component';
 import { RobotElementComponent } from './components/robot-element/robot-element.component';
 import { RobotPageComponent } from './pages/robot-page/robot-page.component';
@@ -17,7 +16,6 @@ import { StateService } from './services/state.service';
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent,
     GridComponent,
     RobotElementComponent,
     RobotPageComponent,
