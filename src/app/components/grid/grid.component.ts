@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Robot } from '../robot/robot';
 import { RobotState, Options } from 'src/app/models';
 import { Coordinates } from 'src/app/models';
@@ -14,6 +14,8 @@ export class GridComponent implements OnInit {
     this.initGrid(options);
   }
 
+  @Output() pathExecuted = new EventEmitter();
+
   private canvasContext: CanvasRenderingContext2D;
   private cellSize = 30;
   private size = 20;
@@ -23,7 +25,7 @@ export class GridComponent implements OnInit {
   private currentRobotElementState: RobotState = this.robot.currentState;
   private gridCoordinates: Coordinates = this.robot.currentState.coordinates;
   private translatedDirection = '';
-
+  private executingPath = false;
   constructor() { }
 
   ngOnInit() {
@@ -33,11 +35,19 @@ export class GridComponent implements OnInit {
         this.setRobotElementState(robotState);
       }
     );
+
+    this.robot.pathExecuted.subscribe(
+      () => {
+        this.executingPath = false;
+        this.pathExecuted.emit();
+      }
+    );
   }
 
   setPathSequence(pathSequence: string) {
-    if (pathSequence !== undefined && pathSequence.length > 0) {
-      this.robot.exeuteCommands(pathSequence);
+    if (pathSequence !== undefined && pathSequence.length > 0 && !this.executingPath) {
+      this.executingPath = true;
+      this.robot.executePath(pathSequence);
     }
   }
 

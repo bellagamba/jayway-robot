@@ -13,6 +13,7 @@ export class RobotPageComponent {
   @ViewChild(GridComponent, {static: false}) private gridComponent: GridComponent;
 
   private options: Options;
+  private executingPath = false;
 
   constructor(public stateService: StateService) {
     this.options = stateService.options;
@@ -20,5 +21,10 @@ export class RobotPageComponent {
 
   pathChangedHandler(pathSequence: string): void  {
     this.gridComponent.setPathSequence(pathSequence);
+    this.executingPath = true;
+  }
+
+  pathExecutedHandler() {
+    this.executingPath = false;
   }
 }

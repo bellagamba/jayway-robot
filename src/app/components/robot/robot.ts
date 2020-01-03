@@ -4,7 +4,7 @@ import { Output, EventEmitter } from '@angular/core';
 import { Coordinates } from 'src/app/models/coordinates';
 
 export class Robot {
-  currentState: RobotState = {
+  public currentState: RobotState = {
     direction: Direction.SOUTH,
     coordinates: {x: 0, y: 0},
   };
@@ -12,18 +12,20 @@ export class Robot {
   private size = 0;
 
   @Output() stateChanged = new EventEmitter<RobotState>();
+  @Output() pathExecuted = new EventEmitter();
 
   constructor(size: number = 0) {
     this.setSize(size);
   }
 
-  exeuteCommands(commands: string, intervalDuration = 500): void {
-    const instructions = this.commands(commands);
+  executePath(commands: string, intervalDuration = 400): void {
+    const instructions = this.splitPathSequence(commands);
     let index = 0;
     if (intervalDuration === 0) {
       for (index = 0; index < commands.length; index++) {
         this.executeSingleCommand(instructions[index]);
       }
+      this.pathExecuted.emit();
       return;
     }
 
@@ -33,6 +35,7 @@ export class Robot {
         index++;
       } else {
         clearInterval(interval);
+        this.pathExecuted.emit();
       }
     }, intervalDuration);
   }
@@ -62,6 +65,7 @@ export class Robot {
 
   setCoordinates(x: number, y: number) {
     this.currentState.coordinates = {x, y};
+    this.validateCoordinates(this.currentState.coordinates);
   }
 
   setSize(size: number = 0) {
@@ -123,18 +127,22 @@ export class Robot {
         break;
     }
 
+    this.validateCoordinates(coordinates);
+
+    this.setCoordinates(coordinates.x, coordinates.y);
+    this.stateChanged.emit(this.currentState);
+  }
+
+  validateCoordinates(coordinates: Coordinates) {
     if (this.size !== 0) {
       coordinates.x = (coordinates.x >= this.size - 1) ? this.size - 1 : coordinates.x;
       coordinates.y = (coordinates.y >= this.size - 1) ? this.size - 1 : coordinates.y;
       coordinates.x = (coordinates.x < 0) ? 0 : coordinates.x;
       coordinates.y = (coordinates.y < 0) ? 0 : coordinates.y;
     }
-
-    this.setCoordinates(coordinates.x, coordinates.y);
-    this.stateChanged.emit(this.currentState);
   }
 
- commands(values: string): Command[] {
+  splitPathSequence(values: string): Command[] {
     const result: Command[] = [];
     const valuesList = values.split('');
     valuesList.forEach(value => {

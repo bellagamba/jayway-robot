@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-path-form',
@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export class PathFormComponent implements OnInit {
   @Output() pathChanged = new EventEmitter<string>();
+  @Input() disabled = false;
   private readonly pathSequenceRegex = new RegExp('^[LRF]*$');
   private pathSequence = '';
 

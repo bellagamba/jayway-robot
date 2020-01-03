@@ -1,2 +1,2 @@
-<app-path-form id="form" (pathChanged)="pathChangedHandler($event)"></app-path-form>
-<app-grid id="grid" [options]="options"></app-grid>
+<app-path-form id="form" (pathChanged)="pathChangedHandler($event)" [disabled]="executingPath"></app-path-form>
+<app-grid id="grid" [options]="options" (pathExecuted)="pathExecutedHandler()"></app-grid>
