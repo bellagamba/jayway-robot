@@ -11,7 +11,6 @@ import { Direction } from 'src/app/constants';
 export class RobotElementComponent implements OnInit {
   @Input() size: number;
   @Input() public set robotState(robotState: RobotState) {
-    this.state = robotState;
     this.drawElement(robotState);
   }
   @HostBinding('style.width') get width() {
@@ -32,8 +31,8 @@ export class RobotElementComponent implements OnInit {
 
   private rotationDegree = 0;
   private prevDirection = Direction.SOUTH;
-  private state: RobotState;
-  private coordinates: Coordinates;
+
+  private coordinates: Coordinates = { x: 0, y: 0};
 
   ngOnInit() {
   }
@@ -43,7 +42,7 @@ export class RobotElementComponent implements OnInit {
   }
 
   drawElement(robotState: RobotState): void  {
-    if (robotState === undefined) {
+    if (!robotState) {
       return;
     }
 

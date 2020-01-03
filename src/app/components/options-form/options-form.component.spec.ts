@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { OptionsFormComponent } from './options-form.component';
 
 describe('OptionsFormComponent', () => {
@@ -8,7 +8,8 @@ describe('OptionsFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OptionsFormComponent ]
+      declarations: [ OptionsFormComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

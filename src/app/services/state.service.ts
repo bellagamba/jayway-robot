@@ -5,7 +5,9 @@ import { Direction } from '../constants';
 /**
  * Appe data service.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class StateService {
   options: Options = {
     size: 20,

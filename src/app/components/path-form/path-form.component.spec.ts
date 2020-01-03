@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PathFormComponent } from './path-form.component';
 
 describe('PathFormComponent', () => {
@@ -8,7 +8,8 @@ describe('PathFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PathFormComponent ]
+      declarations: [ PathFormComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

@@ -19,27 +19,36 @@ export class Robot {
 
   exeuteCommands(commands: string, intervalDuration = 500): void {
     const instructions = this.commands(commands);
-
-    let i = 0;
-    const interval = setInterval(() => {
-      switch (instructions[i]) {
-        case CommandType.RIGHT:
-          this.goRight();
-          break;
-        case CommandType.LEFT:
-          this.goLeft();
-          break;
-        case CommandType.FORWARD:
-          this.goForward();
-          break;
+    let index = 0;
+    if (intervalDuration === 0) {
+      for (index = 0; index < commands.length; index++) {
+        this.executeSingleCommand(instructions[index]);
       }
+      return;
+    }
 
-      if (i < instructions.length - 1) {
-        i++;
+    const interval = setInterval(() => {
+      this.executeSingleCommand(instructions[index]);
+      if (index < instructions.length - 1) {
+        index++;
       } else {
         clearInterval(interval);
       }
     }, intervalDuration);
+  }
+
+  executeSingleCommand(command: CommandType) {
+    switch (command) {
+      case CommandType.RIGHT:
+        this.goRight();
+        break;
+      case CommandType.LEFT:
+        this.goLeft();
+        break;
+      case CommandType.FORWARD:
+        this.goForward();
+        break;
+    }
   }
 
   setState(robotState: RobotState): void {

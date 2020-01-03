@@ -9,7 +9,7 @@ import { StateService } from 'src/app/services/state.service';
   templateUrl: './options-form.component.html',
   styleUrls: ['./options-form.component.scss']
 })
-export class OptionsFormComponent implements OnInit{
+export class OptionsFormComponent implements OnInit {
   @Input() options: Options;
   @Output() optionsChanged = new EventEmitter<Options>();
   private size = 20;
@@ -19,10 +19,12 @@ export class OptionsFormComponent implements OnInit{
   private Direction = Direction;
 
   ngOnInit() {
-    this.size = this.options.size;
-    this.direction = this.options.direction.toString();
-    this.coordinateX = this.options.coordinates.x;
-    this.coordinateY = this.options.coordinates.y;
+    if (this.options) {
+      this.size = this.options.size;
+      this.direction = this.options.direction.toString();
+      this.coordinateX = this.options.coordinates.x;
+      this.coordinateY = this.options.coordinates.y;
+    }
   }
 
   validateSize(event: KeyboardEvent): void {
