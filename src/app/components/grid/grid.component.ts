@@ -28,7 +28,7 @@ export class GridComponent implements OnInit {
   private executingPath = false;
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.robot.stateChanged.subscribe(
       (robotState: RobotState) => {
         this.setRobotElementInfo(robotState);
@@ -44,14 +44,14 @@ export class GridComponent implements OnInit {
     );
   }
 
-  setPathSequence(pathSequence: string) {
+  setPathSequence(pathSequence: string, intervalDuration?: number): void {
     if (pathSequence !== undefined && pathSequence.length > 0 && !this.executingPath) {
       this.executingPath = true;
-      this.robot.executePath(pathSequence);
+      this.robot.executePath(pathSequence, intervalDuration);
     }
   }
 
-  initGrid(options: Options) {
+  initGrid(options: Options): void {
     this.size = options.size;
     this.canvasSize =  this.cellSize * this.size;
     this.initGridCanvas();
@@ -66,7 +66,7 @@ export class GridComponent implements OnInit {
     this.setRobotElementInfo(robotState);
   }
 
-  setRobotElementInfo(robotState: RobotState) {
+  setRobotElementInfo(robotState: RobotState): void {
     this.gridCoordinates = robotState.coordinates;
     this.translatedDirection = this.translateDirection(robotState.direction);
   }
