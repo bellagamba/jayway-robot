@@ -1,16 +1,20 @@
 <div id="content-wrapper">
-  <form class="form-container">
+  <header class="form-header" role="header">
+    <h1>Grid options</h1>
+    <h4>Set up grid size, and robot starting position and direction.</h4>
+  </header>
+  <form class="form-container" role="form">
     <div class="input-wrapper">
       <label for="size">Grid size</label>
-      <input [(ngModel)]="size" [ngModelOptions]="{standalone: true}" type="number" min="1" id="size" (input)="validateSize($event)"/>
+      <input [(ngModel)]="size" [ngModelOptions]="{standalone: true}" type="number" pattern="[0-9]*" min="1" id="size" (input)="validateSize($event)"/>
     </div>
     <div class="input-wrapper">
       <label for="size">Start Position X</label>
-      <input [(ngModel)]="coordinateX" [ngModelOptions]="{standalone: true}" type="number" min="0" [max]="size - 1" id="coordinateX" (input)="validateCoordinateX($event)"/>
+      <input [(ngModel)]="coordinateX" [ngModelOptions]="{standalone: true}" type="number" pattern="[0-9]*" min="0" [max]="size - 1" id="coordinateX" (input)="validateCoordinateX($event)"/>
     </div>
     <div class="input-wrapper">
       <label for="size">Start Position Y</label>
-      <input [(ngModel)]="coordinateY" [ngModelOptions]="{standalone: true}" type="number" min="0" [max]="size - 1" id="coordinateY" (input)="validateCoordinateY($event)"/>
+      <input [(ngModel)]="coordinateY" [ngModelOptions]="{standalone: true}" type="number" pattern="[0-9]*" min="0" [max]="size - 1" id="coordinateY" (input)="validateCoordinateY($event)"/>
     </div>
     <div class="input-wrapper">
       <label for="direction">Start direction</label>

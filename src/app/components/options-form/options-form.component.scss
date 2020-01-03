@@ -3,11 +3,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  .form-header {
+    text-align: center;
+    padding: $padding;
+  }
   #content-wrapper {
-    width: 300px;
+    max-width: $formWidth;
+    padding: $padding;
     .form-container {
       width:100%;
-      padding: $paddingLarge;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
