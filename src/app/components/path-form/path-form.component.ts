@@ -19,7 +19,8 @@ export class PathFormComponent implements OnInit {
 
   validateSequence(event: KeyboardEvent): void {
     if (this.pathSequence.match(this.pathSequenceRegex) === null) {
-      (event.target as HTMLInputElement).value = this.pathSequence.slice(0, -1);
+      this.pathSequence = this.pathSequence.slice(0, -1);
+      (event.target as HTMLInputElement).value = this.pathSequence;
     }
   }
 

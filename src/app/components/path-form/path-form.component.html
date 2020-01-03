@@ -3,5 +3,5 @@
     <label for="pathSequence">Path sequence </label>
     <input placeholder="L: left, R: right, F: forward" [(ngModel)]="pathSequence" [ngModelOptions]="{standalone: true}" type="text" id="path-sequence" (input)="validateSequence($event)"/>
   </div>
-  <button id="button" (click)="execute()" [ngClass]="{'disabled': disabled}">Execute path</button>
+  <button id="exec-path-button" (click)="execute()" [ngClass]="{'disabled': disabled}">Execute path</button>
 </form>
