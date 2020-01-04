@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, HostListener } from '@angular/core';
 import { Robot } from '../robot/robot';
 import { RobotState, Options } from 'src/app/models';
 import { Coordinates } from 'src/app/models';
@@ -26,6 +26,23 @@ export class GridComponent implements OnInit {
   private gridCoordinates: Coordinates = this.robot.currentState.coordinates;
   private translatedDirection = '';
   private executingPath = false;
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == 'ArrowUp'){
+      this.robot.goForward();
+    }
+    if(event.key == 'ArrowLeft'){
+      this.robot.goLeft();
+    }
+    if(event.key == 'ArrowRight'){
+      this.robot.goRight();
+    }
+    if(event.key == 'ArrowDown'){
+      this.robot.executePath('RR', 100);
+    }
+  }
+
   constructor() { }
 
   ngOnInit(): void {
