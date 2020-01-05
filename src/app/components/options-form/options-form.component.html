@@ -9,11 +9,11 @@
       <input [(ngModel)]="size" [ngModelOptions]="{standalone: true}" type="number" pattern="[0-9]*" min="1" id="size" (input)="validateSize($event)"/>
     </div>
     <div class="input-wrapper">
-      <label for="size">Start Position X</label>
+      <label for="coordinateX">Start Position X</label>
       <input [(ngModel)]="coordinateX" [ngModelOptions]="{standalone: true}" type="number" pattern="[0-9]*" min="0" [max]="size - 1" id="coordinateX" (input)="validateCoordinateX($event)"/>
     </div>
     <div class="input-wrapper">
-      <label for="size">Start Position Y</label>
+      <label for="coordinateY">Start Position Y</label>
       <input [(ngModel)]="coordinateY" [ngModelOptions]="{standalone: true}" type="number" pattern="[0-9]*" min="0" [max]="size - 1" id="coordinateY" (input)="validateCoordinateY($event)"/>
     </div>
     <div class="input-wrapper">
